@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>ASB </b> INVENTARIO',
-    'logo_img' => 'vendor/adminlte/dist/img/AdminLTELogo.png',
+    'logo_img' => 'vendor/adminlte/dist/img/LOGOASB.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -297,21 +297,53 @@ return [
     | https://github.com/jeroennoten/Laravel-AdminLTE/wiki/Menu-Configuration
     |
     */
+'menu' => [
 
-    'menu' => [
-        // Navbar items:
-         [
+    [
         'text' => 'Dashboard',
         'url'  => '/',
-        'icon' => 'fas fa-home',
-        ],
+        'icon' => 'fas fa-chart-line',
+    ],
 
-        [
+    [
+        'header' => 'INVENTARIO',
+    ],
+
+    [
         'text' => 'Productos',
         'url'  => '/productos',
-        'icon' => 'fas fa-box',
-        ],
+        'icon' => 'fas fa-boxes',
     ],
+
+    [
+    'text' => 'Movimientos',
+    'url'  => 'movimientos',
+    'icon' => 'fas fa-exchange-alt',
+    ],
+
+    [
+        'text' => 'Categorías',
+        'url'  => '/categorias',
+        'icon' => 'fas fa-tags',
+    ],
+
+    [
+        'header' => 'CONFIGURACIÓN',
+    ],
+
+    [
+        'text' => 'Usuarios',
+        'url'  => '#',
+        'icon' => 'fas fa-users',
+    ],
+
+    [
+        'text' => 'Configuración',
+        'url'  => '#',
+        'icon' => 'fas fa-cog',
+    ],
+
+],
 
     /*
     |--------------------------------------------------------------------------

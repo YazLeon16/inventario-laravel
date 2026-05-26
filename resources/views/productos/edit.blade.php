@@ -46,6 +46,28 @@
                 class="form-control">{{ $producto->descripcion }}</textarea>
         </div>
 
+        <!-- 🔥 CATEGORÍA -->
+        <div class="mb-3">
+            <label>Categoría</label>
+
+            <select name="categoria_id" class="form-control">
+
+                <option value="">Seleccione una categoría</option>
+
+                @foreach($categorias as $categoria)
+
+                    <option value="{{ $categoria->id }}"
+                        {{ $producto->categoria_id == $categoria->id ? 'selected' : '' }}>
+
+                        {{ $categoria->nombre }}
+
+                    </option>
+
+                @endforeach
+
+            </select>
+        </div>
+
         <button class="btn btn-primary">
             Actualizar
         </button>

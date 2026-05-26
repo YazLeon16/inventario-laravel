@@ -19,9 +19,7 @@
                 <ul class="mb-0">
 
                     @foreach ($errors->all() as $error)
-
                         <li>{{ $error }}</li>
-
                     @endforeach
 
                 </ul>
@@ -35,57 +33,57 @@
             @csrf
 
             <div class="mb-3">
-
                 <label>Nombre</label>
-
                 <input type="text"
                        name="nombre"
                        class="form-control"
                        value="{{ old('nombre') }}">
-
             </div>
 
             <div class="mb-3">
-
                 <label>Código</label>
-
                 <input type="text"
                        name="codigo"
                        class="form-control"
                        value="{{ old('codigo') }}">
-
             </div>
 
             <div class="mb-3">
-
                 <label>Stock</label>
-
                 <input type="number"
                        name="stock"
                        class="form-control"
                        value="{{ old('stock') }}">
-
             </div>
 
             <div class="mb-3">
-
                 <label>Precio</label>
-
                 <input type="number"
                        step="0.01"
                        name="precio"
                        class="form-control"
                        value="{{ old('precio') }}">
-
             </div>
 
             <div class="mb-3">
-
                 <label>Descripción</label>
-
                 <textarea name="descripcion"
                           class="form-control">{{ old('descripcion') }}</textarea>
+            </div>
 
+            <!-- 🔥 CATEGORÍA (IMPORTANTE) -->
+            <div class="mb-3">
+                <label>Categoría</label>
+
+                <select name="categoria_id" class="form-control">
+                    <option value="">Seleccione una categoría</option>
+
+                    @foreach($categorias as $categoria)
+                        <option value="{{ $categoria->id }}">
+                            {{ $categoria->nombre }}
+                        </option>
+                    @endforeach
+                </select>
             </div>
 
             <button class="btn btn-success">

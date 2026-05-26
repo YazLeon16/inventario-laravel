@@ -15,7 +15,16 @@
         <a href="/productos/create" class="btn btn-primary mb-3">
             Nuevo Producto
         </a>
+        <a href="{{ route('productos.pdf') }}"
+        class="btn btn-danger mb-3">
 
+            Exportar PDF
+
+        </a>
+        <a href="{{ route('productos.excel') }}"
+        class="btn btn-success mb-3">
+            Exportar Excel
+        </a>
         <form action="/productos" method="GET" class="mb-3">
 
             <div class="row">
@@ -27,6 +36,30 @@
                            class="form-control"
                            placeholder="Buscar producto..."
                            value="{{ $buscar }}">
+
+                </div>
+
+                <!-- 🔥 FILTRO CATEGORÍAS -->
+                <div class="col-md-3">
+
+                    <select name="categoria" class="form-control">
+
+                        <option value="">
+                            Todas las categorías
+                        </option>
+
+                        @foreach($categorias as $cat)
+
+                            <option value="{{ $cat->id }}"
+                                {{ $categoria == $cat->id ? 'selected' : '' }}>
+
+                                {{ $cat->nombre }}
+
+                            </option>
+
+                        @endforeach
+
+                    </select>
 
                 </div>
 
@@ -60,6 +93,7 @@
                     <th>Código</th>
                     <th>Stock</th>
                     <th>Precio</th>
+                    <th>Categoría</th>
                     <th>Acciones</th>
                 </tr>
 
@@ -72,16 +106,53 @@
                 <tr>
 
                     <td>{{ $producto->id }}</td>
+
                     <td>{{ $producto->nombre }}</td>
+
                     <td>{{ $producto->codigo }}</td>
-                    <td>{{ $producto->stock }}</td>
+
+                    <td>
+
+                        @if($producto->stock <= 5)
+
+                            <span class="badge bg-danger">
+                                {{ $producto->stock }}
+                            </span>
+
+                        @elseif($producto->stock <= 15)
+
+                            <span class="badge bg-warning">
+                                {{ $producto->stock }}
+                            </span>
+
+                        @else
+
+                            <span class="badge bg-success">
+                                {{ $producto->stock }}
+                            </span>
+
+                        @endif
+
+                    </td>
+
                     <td>${{ $producto->precio }}</td>
+
+                    <td>
+                        {{ $producto->categoria->nombre ?? 'Sin categoría' }}
+                    </td>
 
                     <td>
 
                         <a href="{{ route('productos.edit', $producto->id) }}"
                            class="btn btn-warning btn-sm">
                             Editar
+                        </a>
+
+                        <a href="{{ route('productos.kardex', $producto->id) }}"
+                            class="btn btn-info btn-sm">
+
+                            Kardex
+
                         </a>
 
                         <form action="{{ route('productos.destroy', $producto->id) }}"
@@ -94,7 +165,9 @@
                             <button type="submit"
                                     class="btn btn-danger btn-sm"
                                     onclick="return confirm('¿Seguro que deseas eliminar este producto?')">
+
                                 Eliminar
+
                             </button>
 
                         </form>
